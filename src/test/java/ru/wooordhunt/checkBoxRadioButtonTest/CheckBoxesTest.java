@@ -1,4 +1,4 @@
-package ru.wooordhunt.checkBoxTest;
+package ru.wooordhunt.checkBoxRadioButtonTest;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

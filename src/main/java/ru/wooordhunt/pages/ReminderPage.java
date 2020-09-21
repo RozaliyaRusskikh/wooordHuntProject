@@ -7,14 +7,15 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ReminderPage extends BasePage {
-    private By checkbox = By.xpath("//input[@type='checkbox']");
+    List<WebElement> list;
 
     public ReminderPage(WebDriver driver) {
         super(driver);
+        By checkbox = By.xpath("//input[@type='checkbox']");
+        list = findAll(checkbox);
     }
 
     public void selectAllCheckBoxes() {
-        List<WebElement> list = findAll(checkbox);
         for (WebElement element : list) {
             if (!element.isSelected()) {
                 element.click();
@@ -23,7 +24,6 @@ public class ReminderPage extends BasePage {
     }
 
     public boolean areAllCheckBoxesSelected() {
-        List<WebElement> list = findAll(checkbox);
         for (WebElement element : list) {
             if (!element.isSelected()) {
                 return false;
