@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="FreeOnlineWindowTestSuite" verbose="1">
+
+    <test name="FreeOnlineWindowTest">
+        <classes>
+            <class name="ru.wooordhunt.freeonlinewindow.FreeOnlineWindowTest"/>
+        </classes>
+    </test>
+</suite>

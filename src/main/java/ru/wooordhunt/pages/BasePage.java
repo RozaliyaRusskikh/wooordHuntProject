@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class BasePage {
 
@@ -42,6 +44,14 @@ public class BasePage {
         return driver.getCurrentUrl();
     }
 
+    public String getCurrentPageTitle() {
+        return driver.getTitle();
+    }
+
+    public String getCurrentPageSource() {
+        return driver.getPageSource();
+    }
+
 
     private void waitFor(ExpectedCondition<WebElement> condition, Integer timeOutInSeconds) {
         timeOutInSeconds = timeOutInSeconds != null ? timeOutInSeconds : 30;
@@ -59,6 +69,22 @@ public class BasePage {
             } catch (StaleElementReferenceException e) {
             }
             attempts++;
+        }
+    }
+
+    public void switchToNewWindowWithTitle(String title) {
+        String firstWindow = driver.getWindowHandle();
+        Set<String> allWindow = driver.getWindowHandles();
+
+        Iterator<String> windowsIterator = allWindow.iterator();
+        while (windowsIterator.hasNext()) {
+            String windowsHandle = windowsIterator.next().toString();
+            if (!windowsHandle.equals(firstWindow)) {
+                driver.switchTo().window(windowsHandle);
+                if (getCurrentPageTitle().equals(title)) {
+                    break;
+                }
+            }
         }
     }
 }

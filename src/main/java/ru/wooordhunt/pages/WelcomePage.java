@@ -8,6 +8,7 @@ public class WelcomePage extends BasePage {
     private By enterLink = By.linkText("Вход");
     private By huntedWorldFieldLocator = By.id("hunted_word");
     private By submitButtonLocator = By.id("hunted_word_submit");
+    private By freeOnlineImage = By.xpath("//*[@id=\"menu_a_block\"]/a");
 
     public WelcomePage(WebDriver driver) {
         super(driver);
@@ -32,5 +33,14 @@ public class WelcomePage extends BasePage {
         type(huntedWorldFieldLocator, word);
         click(submitButtonLocator);
         return new WordNotFoundPage(driver);
+    }
+
+    public void openFreeOnlinePage() {
+        click(freeOnlineImage);
+    }
+
+    public FreeOnlineWindowPage switchToNewWindow() {
+        switchToNewWindowWithTitle("Адаптированная литература на английском и книги с параллельным переводом (онлайн)");
+        return new FreeOnlineWindowPage(driver);
     }
 }
